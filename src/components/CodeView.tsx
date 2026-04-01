@@ -32,7 +32,7 @@ export default function CodeView({ code }: CodeViewProps) {
           margin: 0,
           padding: '1rem',
           background: '#1e1e1e',
-          fontSize: '0.8125rem',
+          fontSize: '0.9375rem',
           lineHeight: '1.5',
           minHeight: '100%',
         }}
