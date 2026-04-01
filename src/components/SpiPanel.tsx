@@ -19,7 +19,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
   return (
     <div className="p-3 space-y-4 overflow-auto">
       {/* Enable */}
-      <label className="flex items-center gap-2 text-sm text-gray-200">
+      <label className="flex items-center gap-2 text-base text-gray-200">
         <input
           type="checkbox"
           checked={config.enabled}
@@ -32,7 +32,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
         <>
           {/* Master / Slave */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Role</label>
+            <label className="text-sm text-gray-400">Role</label>
             <select
               value={config.isMaster ? 'master' : 'slave'}
               onChange={e => update({ isMaster: e.target.value === 'master' })}
@@ -45,7 +45,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
 
           {/* SPI Mode */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">SPI Mode</label>
+            <label className="text-sm text-gray-400">SPI Mode</label>
             <select
               value={config.modeIdx}
               onChange={e => update({ modeIdx: Number(e.target.value) })}
@@ -60,7 +60,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
           {/* Prescaler (Master only) */}
           {config.isMaster && (
             <div className="space-y-1">
-              <label className="text-xs text-gray-400">Prescaler</label>
+              <label className="text-sm text-gray-400">Prescaler</label>
               <select
                 value={config.prescalerIdx}
                 onChange={e => update({ prescalerIdx: Number(e.target.value) })}
@@ -70,7 +70,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
                   <option key={i} value={i}>{p.label}</option>
                 ))}
               </select>
-              <p className="text-xs font-mono text-yellow-400">
+              <p className="text-sm font-mono text-yellow-400">
                 SCK: {fmtSpiClock(config.prescalerIdx, fCpu)}
               </p>
             </div>
@@ -78,7 +78,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
 
           {/* Data order */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Data Order</label>
+            <label className="text-sm text-gray-400">Data Order</label>
             <select
               value={config.lsbFirst ? 'lsb' : 'msb'}
               onChange={e => update({ lsbFirst: e.target.value === 'lsb' })}
@@ -90,7 +90,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
           </div>
 
           {/* SPIE interrupt */}
-          <label className="flex items-center gap-2 text-sm text-gray-200">
+          <label className="flex items-center gap-2 text-base text-gray-200">
             <input
               type="checkbox"
               checked={config.spiInt}
@@ -100,7 +100,7 @@ export default function SpiPanel({ config, onChange, fCpu }: SpiPanelProps) {
           </label>
 
           {/* Pin info */}
-          <div className="text-xs text-gray-400 border-t border-gray-700 pt-2 space-y-0.5">
+          <div className="text-sm text-gray-400 border-t border-gray-700 pt-2 space-y-0.5">
             <p className="font-medium text-gray-300">SPI Pins:</p>
             <p>SS &mdash; PB0 (pin 7){config.isMaster ? ' [output recommended]' : ' [input]'}</p>
             <p>SCK &mdash; PB1 (pin 8){config.isMaster ? ' [output]' : ' [input]'}</p>

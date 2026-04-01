@@ -19,17 +19,6 @@ body {
   @apply bg-[#1e1e1e] text-[#d4d4d4] font-mono text-sm rounded-lg p-4 overflow-auto;
 }
 
-/* Right panel — increase all font sizes by +2 */
-.right-panel {
-  font-size: 1rem; /* 16px base instead of 14px */
-}
-.right-panel .text-xs {
-  font-size: 0.875rem !important; /* 14px instead of 12px */
-}
-.right-panel .text-sm {
-  font-size: 1rem !important; /* 16px instead of 14px */
-}
-
 /* Form controls */
 select, input[type="number"] {
   @apply bg-gray-800 border border-gray-600 text-gray-100 rounded px-2 py-1 text-sm;

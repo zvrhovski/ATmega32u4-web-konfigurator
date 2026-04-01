@@ -98,7 +98,9 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900 text-gray-100">
+    <div className="flex flex-col h-screen bg-gray-900 text-gray-100">
+      {/* Main content */}
+      <div className="flex flex-1 min-h-0">
       {/* Left panel: F_CPU + Code (2/3 width) */}
       <div className="flex flex-col w-2/3 border-r border-gray-700">
         <FcpuSelector
@@ -112,11 +114,20 @@ function App() {
       </div>
 
       {/* Right panel: Tabs + Panel (1/3 width) */}
-      <div className="flex flex-col w-1/3 min-h-0 right-panel">
+      <div className="flex flex-col w-1/3 min-h-0 text-base">
         <TabBar activeTab={cfg.activeTab} onTabChange={cfg.setActiveTab} />
         <div className="flex-1 min-h-0 overflow-auto">
           {renderPanel()}
         </div>
+      </div>
+      </div>
+
+      {/* Footer / Status bar */}
+      <div className="flex items-center justify-between px-4 py-1.5 bg-gray-800 border-t border-gray-700 text-sm text-gray-400">
+        <span>ATmega32U4 Configurator v1.0 {" | "} © Zoran Vrhovski — <a href="https://www.vub.hr" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Veleučilište u Bjelovaru</a></span>
+        <a href="https://www.vub.hr" target="_blank" rel="noopener noreferrer">
+          <img src="/ATmega32u4-web-konfigurator/vub_logo.svg" alt="VUB" className="h-5 opacity-70 hover:opacity-100 transition-opacity" />
+        </a>
       </div>
     </div>
   );

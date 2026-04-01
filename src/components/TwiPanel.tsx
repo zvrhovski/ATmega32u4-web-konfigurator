@@ -23,7 +23,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
   return (
     <div className="p-3 space-y-4 overflow-auto">
       {/* Enable */}
-      <label className="flex items-center gap-2 text-sm text-gray-200">
+      <label className="flex items-center gap-2 text-base text-gray-200">
         <input
           type="checkbox"
           checked={config.enabled}
@@ -36,7 +36,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
         <>
           {/* Master / Slave */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Role</label>
+            <label className="text-sm text-gray-400">Role</label>
             <select
               value={config.isMaster ? 'master' : 'slave'}
               onChange={e => update({ isMaster: e.target.value === 'master' })}
@@ -51,7 +51,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
           {config.isMaster && (
             <>
               <div className="space-y-1">
-                <label className="text-xs text-gray-400">SCL Speed</label>
+                <label className="text-sm text-gray-400">SCL Speed</label>
                 <select
                   value={config.speedIdx}
                   onChange={e => update({ speedIdx: Number(e.target.value) })}
@@ -64,7 +64,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs text-gray-400">Prescaler</label>
+                <label className="text-sm text-gray-400">Prescaler</label>
                 <select
                   value={config.prescalerIdx}
                   onChange={e => update({ prescalerIdx: Number(e.target.value) })}
@@ -76,7 +76,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
                 </select>
               </div>
 
-              <p className="text-xs font-mono text-yellow-400">{twiInfo}</p>
+              <p className="text-sm font-mono text-yellow-400">{twiInfo}</p>
             </>
           )}
 
@@ -84,7 +84,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
           {!config.isMaster && (
             <>
               <div className="space-y-1">
-                <label className="text-xs text-gray-400">
+                <label className="text-sm text-gray-400">
                   Slave Address (7-bit, 0x00&ndash;0x7F)
                 </label>
                 <input
@@ -99,12 +99,12 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
                   }
                   className="w-full"
                 />
-                <p className="text-xs font-mono text-gray-400">
+                <p className="text-sm font-mono text-gray-400">
                   0x{config.slaveAddr.toString(16).toUpperCase().padStart(2, '0')}
                 </p>
               </div>
 
-              <label className="flex items-center gap-2 text-sm text-gray-200">
+              <label className="flex items-center gap-2 text-base text-gray-200">
                 <input
                   type="checkbox"
                   checked={config.generalCall}
@@ -116,7 +116,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
           )}
 
           {/* TWIE interrupt */}
-          <label className="flex items-center gap-2 text-sm text-gray-200">
+          <label className="flex items-center gap-2 text-base text-gray-200">
             <input
               type="checkbox"
               checked={config.twiInt}
@@ -126,7 +126,7 @@ export default function TwiPanel({ config, onChange, fCpu }: TwiPanelProps) {
           </label>
 
           {/* Pin info */}
-          <div className="text-xs text-gray-400 border-t border-gray-700 pt-2 space-y-0.5">
+          <div className="text-sm text-gray-400 border-t border-gray-700 pt-2 space-y-0.5">
             <p className="font-medium text-gray-300">I2C Pins:</p>
             <p>SCL &mdash; PD0 (pin 17)</p>
             <p>SDA &mdash; PD1 (pin 18)</p>

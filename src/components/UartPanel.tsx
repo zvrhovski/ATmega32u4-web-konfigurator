@@ -25,7 +25,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
   return (
     <div className="p-3 space-y-4 overflow-auto">
       {/* Enable */}
-      <label className="flex items-center gap-2 text-sm text-gray-200">
+      <label className="flex items-center gap-2 text-base text-gray-200">
         <input
           type="checkbox"
           checked={config.enabled}
@@ -38,7 +38,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
         <>
           {/* Baud rate */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Baud Rate</label>
+            <label className="text-sm text-gray-400">Baud Rate</label>
             <select
               value={config.baudIdx}
               onChange={e => update({ baudIdx: Number(e.target.value) })}
@@ -51,7 +51,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
           </div>
 
           {/* U2X */}
-          <label className="flex items-center gap-2 text-sm text-gray-200">
+          <label className="flex items-center gap-2 text-base text-gray-200">
             <input
               type="checkbox"
               checked={config.u2x}
@@ -61,11 +61,11 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
           </label>
 
           {/* Baud info */}
-          <p className="text-xs font-mono text-yellow-400">{baudInfo}</p>
+          <p className="text-sm font-mono text-yellow-400">{baudInfo}</p>
 
           {/* Data bits */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Data Bits</label>
+            <label className="text-sm text-gray-400">Data Bits</label>
             <select
               value={config.databitsIdx}
               onChange={e => update({ databitsIdx: Number(e.target.value) })}
@@ -79,7 +79,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
 
           {/* Parity */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Parity</label>
+            <label className="text-sm text-gray-400">Parity</label>
             <select
               value={config.parityIdx}
               onChange={e => update({ parityIdx: Number(e.target.value) })}
@@ -93,7 +93,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
 
           {/* Stop bits */}
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Stop Bits</label>
+            <label className="text-sm text-gray-400">Stop Bits</label>
             <select
               value={config.stopbitsIdx}
               onChange={e => update({ stopbitsIdx: Number(e.target.value) })}
@@ -107,8 +107,8 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
 
           {/* TX / RX enables */}
           <div className="space-y-1">
-            <h4 className="text-xs text-gray-400 font-medium">Direction</h4>
-            <label className="flex items-center gap-2 text-sm text-gray-200">
+            <h4 className="text-sm text-gray-400 font-medium">Direction</h4>
+            <label className="flex items-center gap-2 text-base text-gray-200">
               <input
                 type="checkbox"
                 checked={config.txEn}
@@ -116,7 +116,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
               />
               TX Enable (PD3, pin 20)
             </label>
-            <label className="flex items-center gap-2 text-sm text-gray-200">
+            <label className="flex items-center gap-2 text-base text-gray-200">
               <input
                 type="checkbox"
                 checked={config.rxEn}
@@ -128,8 +128,8 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
 
           {/* Interrupts */}
           <div className="space-y-1 border-t border-gray-700 pt-3">
-            <h4 className="text-xs text-gray-400 font-medium">Interrupts</h4>
-            <label className="flex items-center gap-2 text-sm text-gray-200">
+            <h4 className="text-sm text-gray-400 font-medium">Interrupts</h4>
+            <label className="flex items-center gap-2 text-base text-gray-200">
               <input
                 type="checkbox"
                 checked={config.rxcie}
@@ -137,7 +137,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
               />
               RXCIE (RX Complete)
             </label>
-            <label className="flex items-center gap-2 text-sm text-gray-200">
+            <label className="flex items-center gap-2 text-base text-gray-200">
               <input
                 type="checkbox"
                 checked={config.txcie}
@@ -145,7 +145,7 @@ export default function UartPanel({ config, onChange, fCpu }: UartPanelProps) {
               />
               TXCIE (TX Complete)
             </label>
-            <label className="flex items-center gap-2 text-sm text-gray-200">
+            <label className="flex items-center gap-2 text-base text-gray-200">
               <input
                 type="checkbox"
                 checked={config.udrie}

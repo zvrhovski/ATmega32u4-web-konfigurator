@@ -6,6 +6,8 @@ interface CodeViewProps {
   code: string;
 }
 
+const CODE_FONT_SIZE = '17px';
+
 export default function CodeView({ code }: CodeViewProps) {
   const [copied, setCopied] = useState(false);
 
@@ -17,11 +19,13 @@ export default function CodeView({ code }: CodeViewProps) {
   }, [code]);
 
   return (
-    <div className="relative flex-1 min-h-0 overflow-auto rounded-lg border border-gray-700">
+    <div className="relative flex-1 min-h-0 overflow-auto rounded-lg border border-gray-700"
+         style={{ fontSize: CODE_FONT_SIZE }}>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 z-10 px-3 py-1 text-xs font-mono rounded
+        className="absolute top-2 right-2 z-10 px-3 py-1 font-mono rounded
                    bg-gray-700 hover:bg-gray-600 text-gray-200 transition-colors"
+        style={{ fontSize: '12px' }}
       >
         {copied ? 'Copied!' : 'Copy'}
       </button>
@@ -32,9 +36,12 @@ export default function CodeView({ code }: CodeViewProps) {
           margin: 0,
           padding: '1rem',
           background: '#1e1e1e',
-          fontSize: '0.9375rem',
-          lineHeight: '1.5',
+          fontSize: CODE_FONT_SIZE,
+          lineHeight: '1.6',
           minHeight: '100%',
+        }}
+        codeTagProps={{
+          style: { fontSize: CODE_FONT_SIZE, fontFamily: 'Consolas, monospace' }
         }}
         showLineNumbers
       >
