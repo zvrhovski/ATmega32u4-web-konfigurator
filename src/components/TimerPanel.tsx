@@ -172,12 +172,15 @@ function TimerTab({
             </div>
           )}
 
-          {/* PWM channels */}
-          {mode.isPwm && (
+          {/* OC channels — visible in PWM and CTC modes (not Normal) */}
+          {(mode.isPwm || (mode.wgm !== 0)) && (
             <div className="space-y-3 border-t border-gray-700 pt-3">
-              <h4 className="text-sm text-gray-400">PWM Channels</h4>
+              <h4 className="text-sm text-gray-400">
+                {mode.isPwm ? 'PWM Channels' : 'OC Channels'}
+              </h4>
               {tdef.channels.map(ch => {
                 const chCfg = getChannelConfig(cfg, ch.letter);
+                const isCTC = !mode.isPwm && mode.wgm !== 0;
                 const duty = top !== null ? calcDuty(chCfg.ocr, top) : 0;
                 return (
                   <div key={ch.letter} className="space-y-1 bg-gray-800 rounded p-2">
@@ -187,12 +190,12 @@ function TimerTab({
                         checked={chCfg.enabled}
                         onChange={e => updateChannel(ch.letter, { enabled: e.target.checked })}
                       />
-                      Channel {ch.letter} ({ch.pinName}, pin {ch.pinNum})
+                      Channel {ch.letter} (OC{tdef.n}{ch.letter} → {ch.pinName}, pin {ch.pinNum})
                     </label>
                     {chCfg.enabled && (
                       <div className="ml-6 space-y-1">
                         <div>
-                          <label className="text-sm text-gray-400">COM</label>
+                          <label className="text-sm text-gray-400">Output mode</label>
                           <select
                             value={chCfg.com}
                             onChange={e => updateChannel(ch.letter, { com: Number(e.target.value) })}
@@ -203,29 +206,34 @@ function TimerTab({
                             ))}
                           </select>
                         </div>
-                        <div>
-                          <label className="text-sm text-gray-400">
-                            OCR (0 &ndash; {top ?? maxTop})
-                          </label>
-                          <input
-                            type="number"
-                            min={0}
-                            max={top ?? maxTop}
-                            value={chCfg.ocr}
-                            onChange={e =>
-                              updateChannel(ch.letter, {
-                                ocr: Math.min(
-                                  Math.max(0, Number(e.target.value)),
-                                  top ?? maxTop,
-                                ),
-                              })
-                            }
-                            className="w-full"
-                          />
-                        </div>
-                        <p className="text-sm font-mono text-yellow-400">
-                          Duty: {duty.toFixed(1)}%
-                        </p>
+                        {/* OCR + Duty only for PWM, not CTC */}
+                        {!isCTC && (
+                          <>
+                            <div>
+                              <label className="text-sm text-gray-400">
+                                OCR{tdef.n}{ch.letter} (0–{top ?? maxTop})
+                              </label>
+                              <input
+                                type="number"
+                                min={0}
+                                max={top ?? maxTop}
+                                value={chCfg.ocr}
+                                onChange={e =>
+                                  updateChannel(ch.letter, {
+                                    ocr: Math.min(
+                                      Math.max(0, Number(e.target.value)),
+                                      top ?? maxTop,
+                                    ),
+                                  })
+                                }
+                                className="w-full"
+                              />
+                            </div>
+                            <p className="text-sm font-mono text-yellow-400">
+                              Duty: {duty.toFixed(1)}%
+                            </p>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
